@@ -2,21 +2,14 @@ package com.prophet.services;
 
 import static com.prophet.statics.Constants.ERROR_IN_PROCESSING_STRING;
 
-import java.util.Comparator;
 import java.util.Map;
 import java.util.Optional;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
-import org.apache.regexp.recompile;
-
-import com.carrotsearch.ant.tasks.junit4.dependencies.com.google.gson.internal.Pair;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.prophet.analyzers.BasicQueryAnalyzer;
-import com.prophet.analyzers.GreetingsAnalyzer; 
-import com.prophet.responders.GreetingsResponder;
 import com.prophet.responders.BasicQuestionResponder;
+import com.prophet.responders.GreetingsResponder;
 import com.prophet.responders.Responder;
 import com.prophet.statics.Intent;
 

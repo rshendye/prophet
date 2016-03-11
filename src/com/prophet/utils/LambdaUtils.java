@@ -7,11 +7,8 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-import static com.prophet.utils.OptionalUtils.getOptional;
-
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.lucene.util.CollectionUtil;
 
 /**
  * Class to store all the lambdas 
