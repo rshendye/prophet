@@ -1,18 +1,17 @@
-package com.prophet.statics;
+package com.prophet.dictionary;
 
-import java.util.Map;
-
-import com.google.common.collect.ImmutableMap;
-import com.prophet.analyzers.GreetingsAnalyzer;
-import com.prophet.analyzers.QueryAnalyzer;
 
 public class Constants {
 	
-	// string constants
+	// punctuations
 	public static final String SPACE = " ";
 	public static final String EXCLAMATION_MARK = "!";
 	public static final String QUESTION_MARK = "?";
 	public static final String PERIOD = ".";
+
+	// default responses
+	public static final String STARTER_STRING = "Welcome!";
+	public static final String DECLINE_PERSONAL_ANSWER = "That's way too personal for me to answer!";
 	
 	// Errors 
 	public static final String EXIT = "exit";

@@ -20,7 +20,7 @@ public class CollectionUtils {
     return getOptional(collection)
       .filter(ObjectUtils::isNull)
       .filter(negate(CollectionUtils::isEmpty))
-      .map(getConstantFunction(true))
+      .map(constantFunction(true))
       .orElse(false);
   }
   

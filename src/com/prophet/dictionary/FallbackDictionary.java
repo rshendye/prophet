@@ -1,4 +1,4 @@
-package com.prophet.statics;
+package com.prophet.dictionary;
 
 import java.util.Set;
 

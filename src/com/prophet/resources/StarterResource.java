@@ -6,10 +6,10 @@ import java.io.InputStreamReader;
 
 import com.prophet.services.InterpreterService;
 
-import static com.prophet.statics.Constants.*;
+import static com.prophet.dictionary.Constants.*;
 
 /**
- * The starting point for interaction
+ * Starting point for the programme.
  */
 public class StarterResource {
 	
@@ -18,7 +18,7 @@ public class StarterResource {
 		final InterpreterService interpreterService = new InterpreterService();
 		
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Welcome!");
+		System.out.println(STARTER_STRING);
 		while (true) {
 			String query = bufferedReader.readLine();
 			if (EXIT.equalsIgnoreCase(query)) {
@@ -26,7 +26,8 @@ public class StarterResource {
 				System.out.println(EXIT_RESPONSE);
 				break;
 			} else {
-				System.out.println(interpreterService.getResponse(query));
+				// lose the case to simplify string matching
+				System.out.println(interpreterService.getResponse(query.toLowerCase()));
 			}
 		}
 	}

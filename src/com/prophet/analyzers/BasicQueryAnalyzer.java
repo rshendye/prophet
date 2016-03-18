@@ -1,13 +1,14 @@
 package com.prophet.analyzers;
 
+import com.google.common.collect.ImmutableMap;
+import com.prophet.datatypes.Pair;
+import com.prophet.dictionary.Intent;
 import java.util.AbstractMap;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
-import com.google.common.collect.ImmutableMap;
-import com.prophet.statics.Intent;
+import static com.prophet.dictionary.Intent.*;
 
 /**
  * Simple class that aims at analyzing the type of query
@@ -18,8 +19,10 @@ public class BasicQueryAnalyzer {
 	private static final Map<Intent, QueryAnalyzer> INTENT_TO_ANALYZER_MAP;
 	static {
 		ImmutableMap.Builder<Intent, QueryAnalyzer> intentToAnalyzerBuilder = ImmutableMap.<Intent, QueryAnalyzer>builder()
-			.put(Intent.GREETINGS, new GreetingsAnalyzer())
-			.put(Intent.QUESTION, new QuestionAnalyzer());
+				.put(Intent.GREETINGS, new GreetingsAnalyzer())
+				.put(Intent.QUESTION, new QuestionAnalyzer())
+				.put(Intent.STATEMENT, new StatementAnalyzer());
+
 		
 		INTENT_TO_ANALYZER_MAP = intentToAnalyzerBuilder.build();
 	}
@@ -37,13 +40,13 @@ public class BasicQueryAnalyzer {
 	 */
 	public Intent getQueryIntent() {
 		return Stream.of(Intent.values())
-		  .map(intent -> new AbstractMap.SimpleEntry<Intent, QueryAnalyzer>(intent, INTENT_TO_ANALYZER_MAP.get(intent)))
-		  .filter(x -> x.getKey() != null && x.getValue() != null)
-		  .map(x -> new AbstractMap.SimpleEntry<Intent, Double>(x.getKey(), x.getValue().getProbabilityOfIntent(query)))
-		  .filter(entry -> entry.getValue() > 0)
-		  .max(Comparator.comparing(x -> x.getValue()))
-		  .map(AbstractMap.SimpleEntry::getKey)
-		  .orElse(null);		// default to conversation starter if we cannot predict the intent deterministically
+				.map(intent -> new Pair<>(intent, INTENT_TO_ANALYZER_MAP.get(intent)))
+				.filter(x -> x.getFirst() != null && x.getSecond() != null)
+				.map(x -> new Pair<>(x.getFirst(), x.getSecond().getProbabilityOfIntent(query)))
+				.filter(pair -> pair.getSecond() > 0)
+				.max(Comparator.comparing(x -> x.getSecond()))
+				.map(Pair::getFirst)
+				.orElse(DEFAULT);		// default to conversation starter if we cannot predict the intent deterministically
 	}
 }
 

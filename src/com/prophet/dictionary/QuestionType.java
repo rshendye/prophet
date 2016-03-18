@@ -1,4 +1,4 @@
-package com.prophet.statics;
+package com.prophet.dictionary;
 
 /**
  * Enum to identify the type of question being asked 
@@ -23,5 +23,5 @@ public enum QuestionType {
 	 * when the tone of question and its intent cannot be determined. 
 	 * Typically we should respond with a conversation starter
 	 */
-	DEFAULT;
+	DEFAULT
 }

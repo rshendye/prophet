@@ -1,4 +1,4 @@
-package com.prophet.utils;
+package com.prophet.datatypes;
 
 /**
  * This class aims to store two objects which are related to each other in some way 
@@ -30,5 +30,13 @@ public class Pair<T, V> {
 
 	public void setSecond(V second) {
 		this.second = second;
+	}
+
+	public boolean hasFirst() {
+		return first != null;
+	}
+
+	public boolean hasSecond() {
+		return second != null;
 	}
 }

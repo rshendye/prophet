@@ -1,11 +1,11 @@
 package com.prophet.responders;
 
-import static com.prophet.statics.Constants.EXCLAMATION_MARK;
-import static com.prophet.statics.Constants.SPACE;
-import static com.prophet.statics.GreetingsDictionary.POLITE_QUESTIONS;
-import static com.prophet.statics.GreetingsDictionary.STD_GREETINGS;
+import static com.prophet.dictionary.Constants.EXCLAMATION_MARK;
+import static com.prophet.dictionary.Constants.SPACE;
+import static com.prophet.dictionary.GreetingsDictionary.POLITE_QUESTIONS;
+import static com.prophet.dictionary.GreetingsDictionary.STD_GREETINGS;
 
-import com.prophet.statics.Intent;
+import com.prophet.dictionary.Intent;
 import static com.prophet.utils.LambdaUtils.*;
 import com.prophet.utils.RandomUtils;
 

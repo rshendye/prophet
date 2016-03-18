@@ -1,4 +1,4 @@
-package com.prophet.statics;
+package com.prophet.dictionary;
 
 import java.util.Set;
 
@@ -13,12 +13,12 @@ public class GreetingsDictionary {
 	public static final Set<String> STD_GREETINGS = ImmutableSet.<String>builder()
 	    .add("Hi")
 	    .add("Hey")
-		.add("Hello")
-		.add("Aloha")
-		.add("Hola")
-		.add("Ssup")
-		.add("Whats' up?")
-		.build();
+			.add("Hello")
+			.add("Aloha")
+			.add("Hola")
+			.add("Ssup")
+			.add("Whats' up?")
+			.build();
 	
 	// polite questions
 	public static final Set<String> POLITE_QUESTIONS = ImmutableSet.<String>builder()

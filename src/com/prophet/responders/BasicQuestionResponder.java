@@ -1,18 +1,22 @@
 package com.prophet.responders;
 
 import com.google.common.collect.ImmutableMap;
-import com.prophet.utils.Pair;
-
+import com.prophet.dictionary.QuestionType;
+import com.prophet.datatypes.Pair;
 import java.util.Map;
 import java.util.Optional;
-
 import org.apache.commons.lang.StringUtils;
 
-import com.prophet.statics.QuestionType;
-
-import static com.prophet.statics.Constants.*;
-import static com.prophet.utils.OptionalUtils.*;
-import static com.prophet.statics.QuestionsDictionary.*;
+import static com.prophet.dictionary.Constants.ERROR_IN_GENRATING_RESPONSE;
+import static com.prophet.dictionary.Constants.PERIOD;
+import static com.prophet.dictionary.Constants.QUESTION_MARK;
+import static com.prophet.dictionary.QuestionType.COMMAND;
+import static com.prophet.dictionary.QuestionType.DEFAULT;
+import static com.prophet.dictionary.QuestionType.PERSONAL_QUESTION;
+import static com.prophet.dictionary.QuestionsDictionary.PERSONAL_QUESTION_DIRECTIVES;
+import static com.prophet.dictionary.QuestionsDictionary.WH_QUESTION_DIRECTIVE_SET;
+import static com.prophet.utils.LambdaUtils.constantFunction;
+import static com.prophet.utils.OptionalUtils.getOptional;
 
 
 /**
@@ -30,9 +34,9 @@ public class BasicQuestionResponder implements Responder {
   private static final Map<QuestionType, Responder> QUESTION_TYPE_TO_RESPONDER_MAP; 
   static {
     QUESTION_TYPE_TO_RESPONDER_MAP = ImmutableMap.<QuestionType, Responder>builder()
-        .put(QuestionType.PERSONAL_QUESTION, new PersonalQuestionResponder())
-        .put(QuestionType.COMMAND, new CommandResponder())
-        .put(QuestionType.DEFAULT, new FallbackResponder())
+        .put(PERSONAL_QUESTION, new PersonalQuestionResponder())
+        .put(COMMAND, new CommandResponder())
+        .put(DEFAULT, new FallbackResponder())
         .build();
     
   }
@@ -41,9 +45,9 @@ public class BasicQuestionResponder implements Responder {
 	public String getResponse(final String input) {
 		return getOptional(input)
 			.map(this::extractQuestionFromInput)
-			.map(question -> new Pair<String, QuestionType>(question, getQuestionType(question)))
-			.map(pair -> new Pair<String, Responder>(pair.getFirst(), QUESTION_TYPE_TO_RESPONDER_MAP.get(pair.getSecond())))
-			.filter(pair -> pair.getSecond() != null)
+			.map(question -> new Pair<>(question, getQuestionType(question)))
+			.map(pair -> new Pair<>(pair.getFirst(), QUESTION_TYPE_TO_RESPONDER_MAP.get(pair.getSecond())))
+			.filter(Pair::hasSecond)
 			.map(pair -> pair.getSecond().getResponse(pair.getFirst()))
 			.orElse(ERROR_IN_GENRATING_RESPONSE);
 	}
@@ -82,7 +86,7 @@ public class BasicQuestionResponder implements Responder {
 			.findAny();
 		
 		if (personalQuestionOptional.isPresent()) {
-			return QuestionType.PERSONAL_QUESTION;
+			return PERSONAL_QUESTION;
 		}
 		
 		// check if it is a command. Verify that a wh-question is asked
@@ -90,7 +94,7 @@ public class BasicQuestionResponder implements Responder {
 			.map(question::contains)
 			.filter(Boolean.TRUE::equals)
 			.findAny()
-			.map(isCommand -> QuestionType.COMMAND)
-			.orElse(QuestionType.DEFAULT);				// default when we fail to determine the question type
+			.map(constantFunction(COMMAND))
+			.orElse(DEFAULT);				// default when we fail to determine the question type
 	}
 }

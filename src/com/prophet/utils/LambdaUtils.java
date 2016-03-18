@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
@@ -41,14 +42,17 @@ public class LambdaUtils {
 	 * @param constantReturnValue value that is always returned by the function
 	 * @return Function
 	 */
-	public static <T,R> Function<T, R> getConstantFunction(final R constantReturnValue) {
-		return new Function<T, R>() {
+	public static <T,R> Function<T, R> constantFunction(final R constantReturnValue) {
+		return (T t) ->  constantReturnValue;
+	}
 
-			@Override
-			public R apply(T arg0) {
-				return constantReturnValue;
-			}
-		};
+	/**
+	 * Returns a supplier which supplies a constant value every time it is invoked.
+	 * @param constantValue value to be supplied by the supplier for all invocations.
+	 * @return supplier
+	 */
+	public static <T> Supplier<T> constantSupplier(T constantValue) {
+		return () -> constantValue;
 	}
 	
 	/**
@@ -68,12 +72,6 @@ public class LambdaUtils {
 	}
 	
 	public static <T> Predicate<T> negate (Predicate<T> predicate) {
-	  return new Predicate<T>() {
-
-      @Override
-      public boolean test(T t) {
-        return !predicate.test(t);
-      }
-    };
+	  return (T t) -> !predicate.test(t);
 	}
 }

@@ -1,8 +1,8 @@
 package com.prophet.analyzers;
 
-import static com.prophet.statics.Constants.*;
+import static com.prophet.dictionary.Constants.*;
 import static com.prophet.utils.OptionalUtils.getOptional;
-import static com.prophet.utils.LambdaUtils.getConstantFunction;
+import static com.prophet.utils.LambdaUtils.constantFunction;
 
 /**
  * This class determines if the given query is a question. A Question can be of the following types:
@@ -23,7 +23,7 @@ public class QuestionAnalyzer implements QueryAnalyzer {
 	public double getProbabilityOfIntent(final String query) {
 		return getOptional(query)
 			.filter(s -> s.endsWith(QUESTION_MARK))
-			.map(getConstantFunction(1d))
+			.map(constantFunction(1d))
 			.orElse(0d);
 	}
 

@@ -15,8 +15,8 @@ public class RandomUtils {
 	 * 0 and 100 is lesser than threshold. ie threshold% of the time
 	 * 
 	 * @param threshold
-	 * @param function function to be applied to 
-	 * @param function
+	 * @param unaryOperator function to be applied to
+	 * @param unaryOperator
 	 */
 	public static <T> void performWithProbability(int threshold, UnaryOperator<T> unaryOperator, T target) {
 		if (RANDOM.nextInt(UPPER_LIMIT) < threshold) {

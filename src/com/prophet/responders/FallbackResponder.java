@@ -1,10 +1,10 @@
 package com.prophet.responders;
 
-import static com.prophet.statics.FallbackDictionary.*;
+import static com.prophet.dictionary.FallbackDictionary.*;
 
 import static com.prophet.utils.RandomUtils.*;
 import static com.prophet.utils.LambdaUtils.*;
-import static com.prophet.statics.Constants.*;
+import static com.prophet.dictionary.Constants.*;
 
 /**
  * This responder generates a fallback response to be used as a conversation filler

@@ -12,5 +12,5 @@ public interface Responder {
 	 * @param input
 	 * @return
 	 */
-	public String getResponse(final String input);
+	String getResponse(final String input);
 }
