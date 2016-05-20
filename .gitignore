@@ -4,4 +4,6 @@ bin/
 .classpath
 out/
 prophet.iml
+prophet-impl/prophet-impl.iml
+prophet-spring-components/prophet-spring-components.iml
 .idea/
