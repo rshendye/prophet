@@ -3,7 +3,7 @@ package com.prophet.services;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import com.prophet.analyzers.BasicQueryAnalyzer;
-import com.prophet.dictionary.Intent;
+import com.prophet.enums.Intent;
 import com.prophet.responders.BasicQuestionResponder;
 import com.prophet.responders.FallbackResponder;
 import com.prophet.responders.GreetingsResponder;
@@ -14,13 +14,15 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static com.prophet.dictionary.Constants.ERROR_IN_PROCESSING_STRING;
-import static com.prophet.dictionary.Intent.*;
+import static com.prophet.enums.Intent.*;
 
 
 /**
- * This class accepts user input, analyzes it and returns an appropriate response
+ * This class accepts user input, analyzes it and returns an appropriate response. The input is more generic
+ * and this class aims at trying to understand the intent of the user's query and find an appropriate
+ * response.
  */
-public class InterpreterService {
+public class InterpreterService implements Service {
 	// TODO: wire this in using springs 
 	// OR store this in the constants file
 	private static final Map<Intent, Responder> INTENT_TO_RESPONDER_MAP;
@@ -46,7 +48,7 @@ public class InterpreterService {
 	 * @param query
 	 * @return
 	 */
-	public String getResponse(final String query) {
+	public String processQuery(final String query) {
 		Preconditions.checkNotNull(query, "Query cannot be null.");
 		
 		return Optional.of(new BasicQueryAnalyzer(query))

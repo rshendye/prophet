@@ -1,6 +1,6 @@
 package com.prophet.responders;
 
-import com.prophet.dictionary.Intent;
+import com.prophet.enums.Intent;
 import com.prophet.utils.RandomUtils;
 
 import static com.prophet.dictionary.Constants.EXCLAMATION_MARK;

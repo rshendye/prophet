@@ -1,4 +1,4 @@
-package com.prophet.dictionary;
+package com.prophet.enums;
 
 /**
  * This enum captures the high level intent of the query

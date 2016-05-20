@@ -48,7 +48,7 @@ public class FriendResource {
       }
 
       // lose the case to simplify string matching
-      System.out.println(interpreterService.getResponse(query.toLowerCase()));
+      System.out.println(interpreterService.processQuery(query.toLowerCase()));
 		}
 	}
 }

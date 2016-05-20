@@ -2,13 +2,13 @@ package com.prophet.analyzers;
 
 import com.google.common.collect.ImmutableMap;
 import com.prophet.datatypes.Pair;
-import com.prophet.dictionary.Intent;
+import com.prophet.enums.Intent;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static com.prophet.dictionary.Intent.DEFAULT;
+import static com.prophet.enums.Intent.DEFAULT;
 
 
 /**

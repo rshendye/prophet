@@ -1,4 +1,4 @@
-package com.prophet.dictionary;
+package com.prophet.enums;
 
 /**
  * Enum to identify the type of question being asked 

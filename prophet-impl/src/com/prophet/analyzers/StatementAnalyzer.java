@@ -1,5 +1,6 @@
 package com.prophet.analyzers;
 
+import com.prophet.enums.Intent;
 import java.util.Comparator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -14,7 +15,7 @@ import static com.prophet.utils.AnalyserUtils.getProbabilityOfPartialMatch;
 
 
 /**
- * Generates a response for intent of types {@link com.prophet.dictionary.Intent}.STATEMENT
+ * Generates a response for intent of types {@link Intent}.STATEMENT
  */
 public class StatementAnalyzer implements QueryAnalyzer {
 
